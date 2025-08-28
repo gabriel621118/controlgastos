@@ -1,0 +1,68 @@
+<p>update-gastos works!</p>
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Actualizar Descripcion de Gasto</h5>
+    <button type="button" class="close" (click)="activeModal.dismiss()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form autocomplete="off" [formGroup]="RubrosFormGroup" (ngSubmit)="cambiarGasto()">
+
+        <div>
+      
+        
+          
+         <p></p>
+    
+    
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Gasto</label>
+            <div class="col-8 ">
+      
+              <input class="form-control"
+                     type="text"
+                     placeholder="Gasto"
+                     formControlName="gasto"
+                     [class.is-invalid]="descripNoValido">
+              <small *ngIf="descripNoValido" class="text-danger">
+                      Ingrese Descripcion por lo menos de 5 Letras
+              </small>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Rubro</label>
+                <div class="col-8 ">  
+                  <select formControlName="selectrubro" class="select-css">
+                    <option [value]="item.id" *ngFor="let item of Rubros">{{item.descripcion}}</option>
+                    </select>       
+                  </div>
+          </div>
+
+
+
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Monto</label>
+            <div class="col-8 ">
+      
+              <input class="form-control"
+                     type="text"
+                     placeholder="Monto"
+                     formControlName="monto"
+                     [class.is-invalid]="montoNoValido">
+              <small *ngIf="montoNoValido" class="text-danger">
+                      El monto debe ser numerico
+              </small>
+             
+            </div>
+          </div>
+      
+        </div>
+         
+      </form> 
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Close</button>
+    <button type="submit" class="btn btn-primary" (click)="cambiarGasto()">Save changes</button>
+</div>
